@@ -1,0 +1,126 @@
+/* style.css - Refined Version */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+:root {
+    --bg-body: #0f172a;       /* Darker Navy */
+    --bg-card: #1e293b;       /* Slate Grey */
+    --text-main: #f1f5f9;     /* Off White */
+    --text-muted: #94a3b8;    /* Muted Blue-Grey */
+    --accent: #38bdf8;        /* Soft Sky Blue */
+    --accent-hover: #7dd3fc;
+    --border: #334155;
+    --success: #10b981;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+}
+
+body { 
+    background-color: var(--bg-body); 
+    color: var(--text-main); 
+    font-family: 'Inter', sans-serif;
+    padding: 40px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Container dengan efek Glassmorphism tipis */
+.container-custom {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2.5rem;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+/* Tabel lebih bersih */
+.table { 
+    color: var(--text-main); 
+    border-color: var(--border);
+    vertical-align: middle;
+}
+
+.table thead th { 
+    background-color: rgba(15, 23, 42, 0.5); 
+    color: var(--text-muted); 
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 15px;
+    border-bottom: 2px solid var(--border);
+}
+
+.table tbody td {
+    padding: 15px;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.9rem;
+}
+
+/* Input Form lebih halus */
+.form-label { 
+    color: var(--text-muted); 
+    font-weight: 600; 
+    font-size: 0.8rem;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.form-control { 
+    background-color: #0f172a; 
+    border: 1px solid var(--border); 
+    color: white; 
+    border-radius: 8px;
+    padding: 12px 15px;
+    transition: all 0.2s ease-in-out;
+}
+
+.form-control:focus { 
+    background-color: #0f172a; 
+    border-color: var(--accent); 
+    box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.15);
+    color: white;
+    outline: none;
+}
+
+/* Button yang lebih "Clicky" */
+.btn {
+    border-radius: 8px;
+    padding: 8px 20px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    transition: all 0.2s ease;
+}
+
+.btn-info { 
+    background-color: var(--accent); 
+    border: none; 
+    color: #0f172a; 
+}
+
+.btn-info:hover { 
+    background-color: var(--accent-hover); 
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(56, 189, 248, 0.3);
+}
+
+.btn-warning {
+    background-color: rgba(245, 158, 11, 0.15);
+    border: 1px solid var(--warning);
+    color: var(--warning);
+}
+
+.btn-warning:hover {
+    background-color: var(--warning);
+    color: #0f172a;
+}
+
+.btn-outline-danger {
+    border-color: rgba(239, 68, 68, 0.5);
+    color: var(--danger);
+}
+
+.btn-outline-danger:hover {
+    background-color: var(--danger);
+    color: white;
+}

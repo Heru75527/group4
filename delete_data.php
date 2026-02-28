@@ -1,23 +1,33 @@
 <?php
 include 'koneksi.php';
-$id = $_GET['id'] ?? '';
-$type = $_GET['type'] ?? '';
+
+$id = $_GET['id'];
+$type = $_GET['type'];
 
 $mapping = [
-    'piano' => 'Piano Course', 
-    'grade' => 'Student Examination Grade', 
-    'student' => 'Student', 
-    'instructor' => 'Instructor'
+    'student'    => 'Student',
+    'grade'      => 'Student Examination Grade',
+    'piano'      => 'Piano Course',
+    'instructor' => 'Instructor',
+    'vocal'      => 'Vocal Course',
+    'violin'     => 'Violin Course',
+    'classroom'  => 'Classroom',
+    'schedule'   => 'Course_Schedule'
 ];
 
-if (isset($mapping[$type]) && !empty($id)) {
-    $table = $mapping[$type];
-    // Tentukan kolom kunci (PK)
-    if($type == 'grade') $pk = 'grade_id';
-    elseif($type == 'piano') $pk = 'Course_ID';
-    else $pk = 'id';
+$table = $mapping[$type];
 
-    mysqli_query($conn, "DELETE FROM `$table` WHERE `$pk` = '$id'");
+// Mencari nama kolom pertama (Primary Key) secara otomatis
+$res = mysqli_query($conn, "SHOW COLUMNS FROM `$table` ");
+$col = mysqli_fetch_array($res);
+$pk = $col[0];
+
+// Eksekusi Hapus
+$sql = "DELETE FROM `$table` WHERE `$pk` = '$id'";
+
+if (mysqli_query($conn, $sql)) {
+    echo "<script>alert('Data Berhasil Dihapus'); window.location='view.php?type=$type';</script>";
+} else {
+    echo "Error: " . mysqli_error($conn);
 }
-
-header("Location: view_data.php?type=$type");
+?>

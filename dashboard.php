@@ -71,7 +71,7 @@ $menus = [
     <div class="row g-4">
         <?php foreach ($menus as $menu): ?>
         <div class="col-md-3">
-            <a href="view_data.php?type=<?php echo $menu['type']; ?>" class="menu-card shadow-sm">
+            <a href="view.php?type=<?php echo $menu['type']; ?>" class="menu-card shadow-sm">
                 <div class="icon-circle">
                     <?php echo $menu['icon']; ?>
                 </div>
