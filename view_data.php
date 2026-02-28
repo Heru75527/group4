@@ -8,9 +8,9 @@ $mapping = [
 ];
 $table = $mapping[$type] ?? exit('Resource Not Found');
 
-
+// LOGIKA KHUSUS UNTUK GRADE (Agar data muncul dan bisa di-manage)
 if ($type == 'grade') {
-    
+    // Kita JOIN dengan tabel Student untuk mendapatkan nama lengkap siswa
     $query = "SELECT g.grade_id, s.name AS STUDENT_NAME, g.Course_Type, g.Level, g.Grade 
               FROM `$table` g 
               LEFT JOIN Student s ON g.student_id = s.id";

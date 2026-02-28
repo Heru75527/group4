@@ -24,7 +24,7 @@ if (isset($_POST['save'])) {
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>Add Record</title>// Jika tipenya grade, hapus berdasarkan grade_id
+    <title>Add Record</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body { background-color: #0f172a; color: #fff; padding: 60px; }
