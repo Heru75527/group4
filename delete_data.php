@@ -4,14 +4,19 @@ $id = $_GET['id'] ?? '';
 $type = $_GET['type'] ?? '';
 
 $mapping = [
-    'piano' => 'Piano Course', 'vocal' => 'Vocal Course', 'violin' => 'Violin Course',
-    'instructor' => 'Instructor', 'student' => 'Student', 'grade' => 'Examination Grade'
+    'piano' => 'Piano Course', 
+    'grade' => 'Student Examination Grade', 
+    'student' => 'Student', 
+    'instructor' => 'Instructor'
 ];
 
 if (isset($mapping[$type]) && !empty($id)) {
     $table = $mapping[$type];
-    // Jika tipenya grade, hapus berdasarkan grade_id
-    $pk = ($type == 'grade') ? 'grade_id' : 'id';
+    // Tentukan kolom kunci (PK)
+    if($type == 'grade') $pk = 'grade_id';
+    elseif($type == 'piano') $pk = 'Course_ID';
+    else $pk = 'id';
+
     mysqli_query($conn, "DELETE FROM `$table` WHERE `$pk` = '$id'");
 }
 

@@ -2,10 +2,12 @@
 include 'koneksi.php';
 $type = $_GET['type'] ?? '';
 $mapping = [
-    'piano' => 'Piano Course', 'vocal' => 'Vocal Course', 'violin' => 'Violin Course',
-    'instructor' => 'Instructor', 'student' => 'Student', 'grade' => 'Examination Grade'
+    'piano' => 'Piano Course', 
+    'grade' => 'Student Examination Grade', 
+    'student' => 'Student', 
+    'instructor' => 'Instructor'
 ];
-$table = $mapping[$type] ?? exit('Resource Not Found');
+$table = $mapping[$type] ?? exit('Error');
 
 if (isset($_POST['save'])) {
     $cols = []; $vals = [];
@@ -15,58 +17,49 @@ if (isset($_POST['save'])) {
             $vals[] = "'" . mysqli_real_escape_string($conn, $v) . "'";
         }
     }
-    $query = "INSERT INTO `$table` (" . implode(',', $cols) . ") VALUES (" . implode(',', $vals) . ")";
-    mysqli_query($conn, $query);
-    header("Location: view_data.php?type=$type");
+    $sql = "INSERT INTO `$table` (" . implode(',', $cols) . ") VALUES (" . implode(',', $vals) . ")";
+    if (mysqli_query($conn, $sql)) {
+        header("Location: view_data.php?type=$type");
+    } else {
+        die("MySQL Error: " . mysqli_error($conn));
+    }
 }
 ?>
 <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>Add Record</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        body { background-color: #0f172a; color: #fff; padding: 60px; }
-        .form-box { background: #1e293b; padding: 40px; border-radius: 20px; max-width: 500px; margin: auto; }
-        .form-control { background: #0f172a; border: 1px solid #334155; color: #fff; }
+        body { background: #0f172a; color: white; padding: 50px; }
+        .form-box { background: #1e293b; padding: 40px; border-radius: 20px; max-width: 550px; margin: auto; }
+        .form-control { background: #0f172a; color: white; border: 1px solid #334155; margin-bottom: 15px; }
     </style>
 </head>
 <body>
 <div class="form-box shadow-lg">
-    <h4 class="mb-4 text-info">Add New <?php echo $table; ?></h4>
+    <h4 class="mb-4 text-info">Add to <?php echo $table; ?></h4>
     <form method="POST">
         <?php if($type == 'grade'): ?>
-            <div class="mb-3">
-                <label class="small text-secondary">STUDENT NAME</label>
-                <select name="student_id" class="form-control" required>
-                    <?php 
-                    $students = mysqli_query($conn, "SELECT id, name FROM Student");
-                    while($s = mysqli_fetch_assoc($students)) echo "<option value='{$s['id']}'>{$s['name']}</option>";
-                    ?>
-                </select>
-            </div>
-            <div class="mb-3">
-                <label class="small text-secondary">COURSE TYPE</label>
-                <input type="text" name="Course_Type" class="form-control" placeholder="Piano/Vocal/Violin" required>
-            </div>
-            <div class="mb-3">
-                <label class="small text-secondary">LEVEL</label>
-                <input type="number" name="Level" class="form-control" required>
-            </div>
-            <div class="mb-3">
-                <label class="small text-secondary">GRADE</label>
-                <input type="text" name="Grade" class="form-control" placeholder="A/B/C" required>
-            </div>
-        <?php else: 
-            $fields = mysqli_query($conn, "SHOW COLUMNS FROM `$table` ");
-            while($f = mysqli_fetch_assoc($fields)): if($f['Extra'] == 'auto_increment') continue; ?>
-                <div class="mb-3">
-                    <label class="small text-secondary"><?php echo strtoupper($f['Field']); ?></label>
-                    <input type="text" name="<?php echo $f['Field']; ?>" class="form-control" required>
-                </div>
-        <?php endwhile; endif; ?>
-        <button type="submit" name="save" class="btn btn-info w-100 mt-3 fw-bold">Save Record</button>
+            <input type="text" name="grade_id" class="form-control" placeholder="Grade ID (GRD0001)" required>
+            <input type="text" name="student_id" class="form-control" placeholder="Student ID" required>
+            <input type="text" name="Course_Type" class="form-control" placeholder="Course Type" required>
+            <input type="number" name="Level" class="form-control" placeholder="Level" required>
+            <input type="text" name="Grade" class="form-control" placeholder="Grade (A/B/C)" required>
+        <?php elseif($type == 'piano'): ?>
+            <input type="text" name="Course_ID" class="form-control" placeholder="Course ID" required>
+            <input type="text" name="student_id" class="form-control" placeholder="Student ID" required>
+            <input type="text" name="Instructor_id" class="form-control" placeholder="Instructor ID" required>
+            <input type="text" name="classroom_id" class="form-control" placeholder="Classroom ID" required>
+            <input type="text" name="course_Level" class="form-control" placeholder="Course Level" required>
+            <input type="text" name="Course_Day" class="form-control" placeholder="Course Day" required>
+        <?php else: ?>
+            <?php $res = mysqli_query($conn, "SHOW COLUMNS FROM `$table` ");
+                  while($f = mysqli_fetch_assoc($res)): if($f['Extra'] == 'auto_increment') continue; ?>
+                    <input type="text" name="<?php echo $f['Field']; ?>" class="form-control" placeholder="<?php echo $f['Field']; ?>" required>
+            <?php endwhile; ?>
+        <?php endif; ?>
+        <button type="submit" name="save" class="btn btn-info w-100 fw-bold">Register Data</button>
     </form>
 </div>
 </body>
