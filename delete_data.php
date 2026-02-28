@@ -10,7 +10,7 @@ $mapping = [
 
 if (isset($mapping[$type]) && !empty($id)) {
     $table = $mapping[$type];
-    // Jika tipenya grade, hapus berdasarkan grade_id
+    
     $pk = ($type == 'grade') ? 'grade_id' : 'id';
     mysqli_query($conn, "DELETE FROM `$table` WHERE `$pk` = '$id'");
 }

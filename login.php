@@ -42,7 +42,7 @@ if (isset($_POST['login'])) {
             overflow: hidden;
         }
 
-        /* Dekorasi Lingkaran Cahaya di Background */
+       
         .bg-glow {
             position: absolute;
             width: 400px;
