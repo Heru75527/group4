@@ -39,7 +39,7 @@ if (!isset($_SESSION['admin'])) { header("Location: login.php"); exit; }
         <div class="nav-header">Administration</div>
         <a href="view_data.php?type=grade" class="nav-link">📝 Examination Grade</a>
         <a href="view_data.php?type=instructor" class="nav-link">👨‍🏫 Faculty Members</a>
-        <a href="view_data.php?type=student" class="nav-link">🎓 Student Registry</a>
+        <a href="view_data.php?type=student" class="nav-link">🎓 Student </a>
     </div>
     <div class="p-4 border-top border-dark">
         <a href="logout.php" class="nav-link text-danger fw-bold p-0">🚪 System Logout</a>
