@@ -6,8 +6,7 @@ if (isset($_POST['login'])) {
     $username = mysqli_real_escape_string($conn, $_POST['username']);
     $password = mysqli_real_escape_string($conn, $_POST['password']);
 
-    // Untuk demo ini, kita gunakan hardcoded atau cek ke tabel user jika Anda punya
-    // Contoh sederhana: admin / admin123
+    
     if ($username == "admin" && $password == "admin123") {
         $_SESSION['admin'] = $username;
         header("Location: dashboard.php");
