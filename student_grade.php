@@ -3,11 +3,9 @@ include 'koneksi.php';
 
 $student_id = $_GET['student_id'] ?? '';
 
-// Ambil info nama siswa
 $student_info = mysqli_query($conn, "SELECT Name FROM Student WHERE student_id = '$student_id'");
 $s_name = mysqli_fetch_assoc($student_info)['Name'];
 
-// Ambil data nilai dari tabel Student Examination Grade
 $query = "SELECT * FROM `Student Examination Grade` WHERE student_id = '$student_id'";
 $result = mysqli_query($conn, $query);
 ?>

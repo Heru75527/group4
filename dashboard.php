@@ -1,7 +1,7 @@
 <?php
 include 'koneksi.php';
 
-// List semua tabel sesuai struktur group4 Anda
+
 $menus = [
     ['type' => 'student', 'label' => 'Student List', 'icon' => '👨‍🎓', 'desc' => 'Manage student profiles'],
     ['type' => 'instructor', 'label' => 'Instructor', 'icon' => '👨‍🏫', 'desc' => 'Manage music teachers'],

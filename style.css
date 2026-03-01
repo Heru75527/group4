@@ -1,12 +1,12 @@
-/* style.css - Refined Version */
+
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
 
 :root {
-    --bg-body: #0f172a;       /* Darker Navy */
-    --bg-card: #1e293b;       /* Slate Grey */
-    --text-main: #f1f5f9;     /* Off White */
-    --text-muted: #94a3b8;    /* Muted Blue-Grey */
-    --accent: #38bdf8;        /* Soft Sky Blue */
+    --bg-body: #0f172a;       
+    --bg-card: #1e293b;       
+    --text-main: #f1f5f9;     
+    --text-muted: #94a3b8;    
+    --accent: #38bdf8;        
     --accent-hover: #7dd3fc;
     --border: #334155;
     --success: #10b981;
@@ -23,7 +23,6 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
-/* Container dengan efek Glassmorphism tipis */
 .container-custom {
     background-color: var(--bg-card);
     border: 1px solid var(--border);
@@ -33,7 +32,7 @@ body {
     transition: transform 0.3s ease;
 }
 
-/* Tabel lebih bersih */
+
 .table { 
     color: var(--text-main); 
     border-color: var(--border);
@@ -57,7 +56,7 @@ body {
     font-size: 0.9rem;
 }
 
-/* Input Form lebih halus */
+
 .form-label { 
     color: var(--text-muted); 
     font-weight: 600; 
@@ -83,7 +82,7 @@ body {
     outline: none;
 }
 
-/* Button yang lebih "Clicky" */
+
 .btn {
     border-radius: 8px;
     padding: 8px 20px;

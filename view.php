@@ -28,7 +28,7 @@ $result = mysqli_query($conn, "SELECT * FROM `$table` ");
                     <?php 
                     $fields = mysqli_fetch_fields($result);
                     foreach ($fields as $f) {
-                        // MENGHAPUS UNDERSCORE DI HEADER TABEL
+                       
                         echo "<th>" . str_replace('_', ' ', strtoupper($f->name)) . "</th>";
                     }
                     ?>

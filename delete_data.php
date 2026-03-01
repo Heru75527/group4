@@ -17,12 +17,12 @@ $mapping = [
 
 $table = $mapping[$type];
 
-// Mencari nama kolom pertama (Primary Key) secara otomatis
+
 $res = mysqli_query($conn, "SHOW COLUMNS FROM `$table` ");
 $col = mysqli_fetch_array($res);
 $pk = $col[0];
 
-// Eksekusi Hapus
+
 $sql = "DELETE FROM `$table` WHERE `$pk` = '$id'";
 
 if (mysqli_query($conn, $sql)) {
